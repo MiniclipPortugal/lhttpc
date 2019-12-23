@@ -67,16 +67,9 @@
     {ok, socket()} | {error, atom()}.
 connect(Host0, Port, Options, Timeout, true) ->
     Host = dns_cache_handler:get_cached_dns(Host0),
-    
-    [A,B,C,D,E|_] = Options,
-    io:format("~n------------LHTTPC SSL CONNECT-------------~p ~p~n", [?MODULE, {Host, Port, [A,B,C,D,E], Timeout}]),
-    
     ssl:connect(Host, Port, Options, Timeout);
 connect(Host0, Port, Options, Timeout, false) ->
     Host = dns_cache_handler:get_cached_dns(Host0),
-    
-    io:format("~n------------LHTTPC TCP CONNECT-------------~p ~p~n", [?MODULE, Host]),
-    
     gen_tcp:connect(Host, Port, Options, Timeout).
 
 %%------------------------------------------------------------------------------

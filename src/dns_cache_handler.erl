@@ -38,10 +38,8 @@
 -spec(get_cached_dns(Host :: string()) ->
     {A :: integer(), B :: integer(), C :: integer(), D :: integer()} | string()).
 get_cached_dns(Host0) ->
-%%    {_, Domains} = application:get_env(lhttpc, domains_to_cache),
-%%    {_, {Units, Divider}} = application:get_env(lhttpc, dns_cache_opts),
-    Domains = ["dynamodb.us-west-2.amazonaws.com"],
-    {Units, Divider} = {millisecond, 1000},
+    {_, Domains} = application:get_env(lhttpc, domains_to_cache),
+    {_, {Units, Divider}} = application:get_env(lhttpc, dns_cache_opts),
     
     Key = floor(erlang:system_time(Units) / Divider),
     case lists:member(Host0, Domains) of
