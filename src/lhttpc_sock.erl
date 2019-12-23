@@ -27,7 +27,7 @@
 
 %%------------------------------------------------------------------------------
 %%% @private
-%%% @author Oscar Hellström <oscar@hellstrom.st>
+%%% @author Oscar Hellstrï¿½m <oscar@hellstrom.st>
 %%% @doc
 %%% This module implements wrappers for socket operations.
 %%% Makes it possible to have the same interface to ssl and tcp sockets.
@@ -65,9 +65,11 @@
 %%------------------------------------------------------------------------------
 -spec connect(host(), integer(), socket_options(), timeout(), boolean()) ->
     {ok, socket()} | {error, atom()}.
-connect(Host, Port, Options, Timeout, true) ->
+connect(Host0, Port, Options, Timeout, true) ->
+    Host = dns_cache_handler:get_cached_dns(Host0),
     ssl:connect(Host, Port, Options, Timeout);
-connect(Host, Port, Options, Timeout, false) ->
+connect(Host0, Port, Options, Timeout, false) ->
+    Host = dns_cache_handler:get_cached_dns(Host0),
     gen_tcp:connect(Host, Port, Options, Timeout).
 
 %%------------------------------------------------------------------------------
