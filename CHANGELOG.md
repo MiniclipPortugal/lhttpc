@@ -9,11 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `rebar3_hank [Paulo Oliveira]
+- `rebar3_hank` [Paulo Oliveira]
 
 ### Changed
 
 - CI container approach to `setup-beam` with cache [Paulo Oliveira]
+- CA bundles, to base them on the latest Mozilla Included CA Certificate List [Guilherme Andrade]
+
+### Removed
+
+- compatibility with OTP 21
 
 ## [4.1.2] - 2021-03-15
 
